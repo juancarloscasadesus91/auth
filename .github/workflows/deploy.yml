@@ -1,0 +1,36 @@
+
+name: Deploy to InfinityFree
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment only on main branch
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy theme to InfinityFree
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ftpupload.net
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: /htdocs/auth/schwab/callback
+          protocol: ftp
+          port: 21
+          security: loose
+          log-level: verbose
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.github/**
+            **/tests/**
+            **/.vscode/**
+            **/.idea/**
+            **/README.md
