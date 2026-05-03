@@ -80,15 +80,16 @@ ok "URL obtenida: ${GREEN}${TUNNEL_URL}${NC}"
 INDEX_PATH="${GIT_REPO_PATH}/${INDEX_FILE}"
 [[ -f "$INDEX_PATH" ]] || err "No se encontró $INDEX_PATH"
 
-log "Actualizando \$tunnel en ${INDEX_FILE}..."
-# Reemplaza la línea que define $tunnel = "..."
-sed -i.bak "s|^\(\$tunnel\s*=\s*\)\".*\";|\1\"${TUNNEL_URL}\";|" "$INDEX_PATH"
+log "Actualizando \$tunnelUrl en ${INDEX_FILE}..."
+# Reemplaza la línea que define $tunnelUrl = '...'
+sed -i.bak "s|^\(\$tunnelUrl\s*=\s*\)['\"].*['\"];|\1'${TUNNEL_URL}';|" "$INDEX_PATH"
+rm -f "${INDEX_PATH}.bak"
 ok "index.php actualizado"
 
 # ── Commit y push al repo git ────────────────────
 log "Haciendo commit y push en el repo..."
-cd "$GIT_REPO_PATH"
-git add "$INDEX_FILE"
+cd "/home/jhony/Documentos/TOS/auth"
+git add "schwab/callback/$INDEX_FILE"
 if git diff --cached --quiet; then
     warn "No hay cambios nuevos en el repo (la URL era la misma)."
 else
@@ -113,6 +114,7 @@ update_env_key() {
 
 update_env_key "APP_URL"   "$TUNNEL_URL"
 update_env_key "ASSET_URL" "$TUNNEL_URL"
+rm -f "${ENV_FILE}.bak"
 
 # ── Todo listo ───────────────────────────────────
 echo ""
