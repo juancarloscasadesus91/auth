@@ -1,6 +1,6 @@
 <?php
 
-$tunnelUrl = 'https://penguin-sending-homeland-linked.trycloudflare.com';
+$tunnelUrl = 'https://took-worth-fastest-vcr.trycloudflare.com';
 
 $query = $_SERVER['QUERY_STRING'] ?? '';
 
