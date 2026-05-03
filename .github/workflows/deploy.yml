@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
-          server-dir: /myschwab.synergize.co/htdocs/auth/schwab/callback/
+          server-dir: /myschwab.synergize.co/htdocs/auth/
           protocol: ftp
           port: 21
           security: loose
