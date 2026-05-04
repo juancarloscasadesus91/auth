@@ -1,6 +1,6 @@
 <?php
 
-$tunnelUrl = 'https://geological-reload-shelter-variables.trycloudflare.com';
+$tunnelUrl = 'https://civilian-cattle-sprint-gym.trycloudflare.com';
 
 $query = $_SERVER['QUERY_STRING'] ?? '';
 
