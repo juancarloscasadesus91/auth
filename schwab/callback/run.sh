@@ -37,8 +37,12 @@ trap 'kill $CF_PID 2>/dev/null' EXIT
 
 # ── Lanzar cloudflared en background ────────────
 log "Iniciando túnel en localhost:${LOCAL_PORT}..."
-cloudflared tunnel --url "http://localhost:${LOCAL_PORT}" \
-    --no-autoupdate --loglevel info >"$TMPLOG" 2>&1 &
+echo -e "${CYAN}Ejecutando:${NC} cloudflared tunnel --protocol http2 --url http://localhost:${LOCAL_PORT}"
+echo ""
+
+# Usar tee para mostrar en consola Y guardar en log
+cloudflared tunnel --protocol http2 --url "http://localhost:${LOCAL_PORT}" \
+    --no-autoupdate --loglevel info 2>&1 | tee "$TMPLOG" &
 CF_PID=$!
 log "Cloudflared PID: $CF_PID, Log: $TMPLOG"
 sleep 3  # Dar tiempo a cloudflared para iniciar y conectar
