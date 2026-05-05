@@ -1,6 +1,6 @@
 <?php
 
-$tunnelUrl = 'https://volvo-renewable-survive-ash.trycloudflare.com';
+$tunnelUrl = 'https://market.synergyplatform.net';
 
 $query = $_SERVER['QUERY_STRING'] ?? '';
 
